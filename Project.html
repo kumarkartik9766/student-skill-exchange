@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillBridge - Student Exchange</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f8fc;
+  color: #20243a;
+}
+header {
+  background: white;
+  padding: 18px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 12px #0000000c;
+}
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #6554d9;
+}
+nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #42465b;
+  font-weight: 600;
+}
+button {
+  border: none;
+  background: #6554d9;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover {
+  background: #5140c0;
+}
+.hero {
+  margin: 35px auto;
+  width: 86%;
+  background: linear-gradient(120deg,#e9e6ff,#e2f7f3);
+  border-radius: 22px;
+  padding: 55px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+.hero h1 {
+  font-size: 43px;
+  line-height: 1.2;
+  margin: 15px 0;
+}
+.hero p {
+  color: #62677b;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+.hero-icon {
+  font-size: 105px;
+}
+.small-title {
+  color: #6554d9;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+section {
+  width: 86%;
+  margin: 35px auto;
+}
+.section-title {
+  margin-bottom: 18px;
+}
+.section-title h2 {
+  font-size: 26px;
+  margin-bottom: 7px;
+}
+.section-title p {
+  color: #777b8b;
+  font-size: 14px;
+}
+.search-area {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+input, select {
+  padding: 13px;
+  border: 1px solid #dfe1eb;
+  border-radius: 9px;
+  font-size: 14px;
+  outline: none;
+  background: white;
+}
+input:focus, select:focus {
+  border-color: #6554d9;
+}
+#search {
+  flex: 1;
+}
+.categories {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.category {
+  background: white;
+  color: #555970;
+  border: 1px solid #e1e2ed;
+  border-radius: 20px;
+  padding: 9px 16px;
+}
+.category.active {
+  background: #6554d9;
+  color: white;
+}
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+.student-card {
+  background: white;
+  padding: 22px;
+  border-radius: 15px;
+  box-shadow: 0 4px 16px #0000000b;
+  border: 1px solid #eeeeF5;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  background: #eeebff;
+  display: grid;
+  place-items: center;
+  font-size: 27px;
+}
+.student-card h3 {
+  font-size: 17px;
+}
+.student-card small {
+  color: #888b9a;
+}
+.student-card p {
+  font-size: 13px;
+  color: #6d7183;
+  margin: 12px 0;
+  line-height: 1.5;
+}
+.skill-label {
+  color: #6554d9;
+  font-size: 11px;
+  font-weight: bold;
+  margin-top: 12px;
+  display: block;
+}
+.skill-name {
+  display: inline-block;
+  padding: 7px 10px;
+  background: #f0eeff;
+  color: #6554d9;
+  border-radius: 7px;
+  font-size: 12px;
+  margin-top: 7px;
+}
+.wants {
+  background: #e7f8f2;
+  color: #159779;
+}
+.student-card button {
+  width: 100%;
+  margin-top: 17px;
+}
+.add-box {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 600px;
+  box-shadow: 0 4px 16px #0000000b;
+}
+.add-box input, .add-box select {
+  width: 100%;
+  margin: 7px 0 15px;
+}
+.add-box label {
+  font-weight: bold;
+  font-size: 13px;
+}
+#message {
+  color: #159779;
+  margin-top: 12px;
+  font-size: 14px;
+}
+footer {
+  margin-top: 50px;
+  background: #20243a;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+@media(max-width:800px) {
+  .student-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+  .hero h1 {
+    font-size: 34px;
+  }
+}
+@media(max-width:600px) {
+  header {
+    padding: 15px 5%;
+  }
+  nav {
+    display: none;
+  }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 35px 20px;
+  }
+  .hero h1 {
+    font-size: 30px;
+  }
+  .hero-icon {
+    font-size: 70px;
+  }
+  section, .hero {
+    width: 92%;
+  }
+  .student-grid {
+    grid-template-columns: 1fr;
+  }
+  .search-area {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SkillBridge</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#explore">Explore</a>
+    <a href="#add">Add Skill</a>
+  </nav>
+  <button onclick="goToAdd()">Join Now</button>
+</header>
+
+<div class="hero" id="home">
+  <div>
+    <div class="small-title">STUDENT SKILL EXCHANGE</div>
+    <h1>Share Skills.<br>Build Your Future.</h1>
+    <p>Connect with students, exchange knowledge<br>
+       and learn something new every day.</p>
+    <button onclick="goToExplore()">Explore Students →</button>
+  </div>
+  <div class="hero-icon">🤝📚</div>
+</div>
+
+<section id="explore">
+  <div class="section-title">
+    <h2>Find Your Learning Partner</h2>
+    <p>Explore students and discover new skills.</p>
+  </div>
+
+  <div class="search-area">
+    <input id="search" placeholder="Search student or skill..."
+           oninput="showStudents()">
+    <button onclick="clearSearch()">Clear</button>
+  </div>
+
+  <div class="categories">
+    <button class="category active" onclick="filterCategory('All',this)">All</button>
+    <button class="category" onclick="filterCategory('Technology',this)">Technology</button>
+    <button class="category" onclick="filterCategory('Design',this)">Design</button>
+    <button class="category" onclick="filterCategory('Communication',this)">Communication</button>
+  </div>
+
+  <div class="student-grid" id="studentGrid"></div>
+</section>
+
+<section id="add">
+  <div class="section-title">
+    <h2>Join SkillBridge</h2>
+    <p>Add your skills and find students to learn with.</p>
+  </div>
+
+  <div class="add-box">
+    <label for="studentName">Your Name</label>
+    <input id="studentName" placeholder="Enter your name">
+
+    <label for="teachSkill">Skill You Can Teach</label>
+    <input id="teachSkill" placeholder="e.g. Python">
+
+    <label for="learnSkill">Skill You Want to Learn</label>
+    <input id="learnSkill" placeholder="e.g. Web Design">
+
+    <label for="category">Category</label>
+    <select id="category">
+      <option value="Technology">Technology</option>
+      <option value="Design">Design</option>
+      <option value="Communication">Communication</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <button onclick="addStudent()">Add My Profile</button>
+    <p id="message"></p>
+  </div>
+</section>
+
+<footer>
+  <h3>SkillBridge</h3>
+  <p style="margin-top:10px">Learn together. Grow together.</p>
+  <p style="margin-top:10px;font-size:12px">© 2026 SkillBridge</p>
+</footer>
+
+<script>
+let students = [
+  {
+    name: "Aarav",
+    teach: "Python",
+    learn: "Graphic Design",
+    category: "Technology",
+    emoji: "👨‍💻"
+  },
+  {
+    name: "Meera",
+    teach: "Drawing",
+    learn: "Web Development",
+    category: "Design",
+    emoji: "🎨"
+  },
+  {
+    name: "Rahul",
+    teach: "Excel",
+    learn: "Python",
+    category: "Technology",
+    emoji: "📊"
+  },
+  {
+    name: "Ananya",
+    teach: "Public Speaking",
+    learn: "Video Editing",
+    category: "Communication",
+    emoji: "🎤"
+  },
+  {
+    name: "Kabir",
+    teach: "HTML and CSS",
+    learn: "Drawing",
+    category: "Technology",
+    emoji: "🌐"
+  },
+  {
+    name: "Diya",
+    teach: "English",
+    learn: "Excel",
+    category: "Communication",
+    emoji: "📚"
+  }
+];
+
+let selectedCategory = "All";
+
+function showStudents() {
+  let search = document.getElementById("search")
+    .value.toLowerCase().trim();
+
+  let grid = document.getElementById("studentGrid");
+  grid.innerHTML = "";
+
+  let results = students.filter(function(student) {
+    let matchesSearch =
+      student.name.toLowerCase().includes(search) ||
+      student.teach.toLowerCase().includes(search) ||
+      student.learn.toLowerCase().includes(search);
+
+    let matchesCategory =
+      selectedCategory === "All" ||
+      student.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  if (results.length === 0) {
+    grid.textContent = "No students found.";
+    return;
+  }
+
+  results.forEach(function(student) {
+    let card = document.createElement("div");
+    card.className = "student-card";
+
+    let profile = document.createElement("div");
+    profile.className = "profile";
+
+    let avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.textContent = student.emoji;
+
+    let info = document.createElement("div");
+    let heading = document.createElement("h3");
+    heading.textContent = student.name;
+    let small = document.createElement("small");
+    small.textContent = student.category;
+
+    info.appendChild(heading);
+    info.appendChild(small);
+    profile.appendChild(avatar);
+    profile.appendChild(info);
+
+    let teachLabel = document.createElement("span");
+    teachLabel.className = "skill-label";
+    teachLabel.textContent = "CAN TEACH";
+
+    let teach = document.createElement("span");
+    teach.className = "skill-name";
+    teach.textContent = student.teach;
+
+    let learnLabel = document.createElement("span");
+    learnLabel.className = "skill-label";
+    learnLabel.textContent = "WANTS TO LEARN";
+
+    let learn = document.createElement("span");
+    learn.className = "skill-name wants";
+    learn.textContent = student.learn;
+
+    let button = document.createElement("button");
+    button.textContent = "Request Exchange";
+    button.onclick = function() {
+      alert("You selected " + student.name +
+        ". This is a demo request; it is not sent.");
+    };
+
+    card.appendChild(profile);
+    card.appendChild(teachLabel);
+    card.appendChild(teach);
+    card.appendChild(learnLabel);
+    card.appendChild(learn);
+    card.appendChild(button);
+    grid.appendChild(card);
+  });
+}
+
+function filterCategory(category, button) {
+  selectedCategory = category;
+
+  document.querySelectorAll(".category").forEach(function(item) {
+    item.classList.remove("active");
+  });
+
+  button.classList.add("active");
+  showStudents();
+}
+
+function clearSearch() {
+  document.getElementById("search").value = "";
+  showStudents();
+}
+
+function addStudent() {
+  let name = document.getElementById("studentName").value.trim();
+  let teach = document.getElementById("teachSkill").value.trim();
+  let learn = document.getElementById("learnSkill").value.trim();
+  let category = document.getElementById("category").value;
+  let message = document.getElementById("message");
+
+  if (!name || !teach || !learn) {
+    message.textContent = "Please fill in all the fields.";
+    return;
+  }
+
+  students.push({
+    name: name,
+    teach: teach,
+    learn: learn,
+    category: category,
+    emoji: "🌟"
+  });
+
+  message.textContent = "Your profile has been added!";
+
+  document.getElementById("studentName").value = "";
+  document.getElementById("teachSkill").value = "";
+  document.getElementById("learnSkill").value = "";
+
+  selectedCategory = "All";
+  document.querySelectorAll(".category").forEach(function(item) {
+    item.classList.remove("active");
+  });
+  document.querySelector(".category").classList.add("active");
+
+  showStudents();
+}
+
+function goToAdd() {
+  document.getElementById("add").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function goToExplore() {
+  document.getElementById("explore").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+showStudents();
+</script>
+</body>
+</html>
